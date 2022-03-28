@@ -1,18 +1,22 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
+  const [name, setName] = useState('Summer');
+  const [profile, setProfile] = useState({ hobbies: 'sports', age: 20 });
+  const clickHandler = () => {
+    setName('Lucy');
+    setProfile({ hobbies: 'drawing', age: 25 });
+  };
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.text}>欢迎来到我的博客！</Text>
-      </View>
-      <View style={styles.body}>
-        <Text style={styles.bodytext}>
-          <Text>我的</Text>第一篇博客
-        </Text>
-        <Text style={styles.bodytext}>我的第二篇博客</Text>
-        <Text style={styles.bodytext}>我的第三篇博客</Text>
+      <Text>My name is {name}</Text>
+      <Text>
+        I like {profile.hobbies} and my age is {profile.age}
+      </Text>
+      <View style={styles.buttonContainer}>
+        <Button title='更改信息' onPress={clickHandler} />
       </View>
       <StatusBar style='auto' />
     </View>
@@ -26,20 +30,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  header: {
-    backgroundColor: 'yellow',
-    padding: 20,
-  },
-  text: {
-    fontWeight: 'bold',
-  },
-  body: {
-    backgroundColor: 'pink',
-    margin: 20,
-  },
-  bodytext: {
-    fontSize: 25,
-    padding: 10,
-    fontWeight: 'bold',
+  buttonContainer: {
+    marginTop: 20,
   },
 });
