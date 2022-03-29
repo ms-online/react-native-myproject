@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
+import AddTodo from './components/AddTodo';
 import Header from './components/Header';
 import TodoItem from './components/TodoItem';
 
@@ -17,11 +18,20 @@ export default function App() {
       return prevTodos.filter((todo) => todo.key !== key);
     });
   };
+
+  const AddTodoHandler = (text) => {
+    setTodos((prevTodos) => {
+      return [{ text: text, key: Math.random().toString() }, ...prevTodos];
+    });
+  };
+
   return (
     <View style={styles.container}>
       {/* 头部header */}
       <Header />
       <View style={styles.content}>
+        {/* 新增事项Form */}
+        <AddTodo AddTodoHandler={AddTodoHandler} />
         {/* 列表list */}
         <View style={styles.list}>
           <FlatList
