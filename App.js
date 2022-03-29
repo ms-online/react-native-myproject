@@ -7,6 +7,8 @@ import {
   FlatList,
   Alert,
   ToastAndroid,
+  TouchableWithoutFeedback,
+  Keyboard,
 } from 'react-native';
 import AddTodo from './components/AddTodo';
 import Header from './components/Header';
@@ -59,24 +61,26 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      {/* 头部header */}
-      <Header />
-      <View style={styles.content}>
-        {/* 新增事项Form */}
-        <AddTodo AddTodoHandler={AddTodoHandler} />
-        {/* 列表list */}
-        <View style={styles.list}>
-          <FlatList
-            data={todos}
-            renderItem={({ item }) => (
-              <TodoItem item={item} pressedHandler={pressedHandler} />
-            )}
-          />
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <View style={styles.container}>
+        {/* 头部header */}
+        <Header />
+        <View style={styles.content}>
+          {/* 新增事项Form */}
+          <AddTodo AddTodoHandler={AddTodoHandler} />
+          {/* 列表list */}
+          <View style={styles.list}>
+            <FlatList
+              data={todos}
+              renderItem={({ item }) => (
+                <TodoItem item={item} pressedHandler={pressedHandler} />
+              )}
+            />
+          </View>
         </View>
+        <StatusBar style='auto' />
       </View>
-      <StatusBar style='auto' />
-    </View>
+    </TouchableWithoutFeedback>
   );
 }
 
