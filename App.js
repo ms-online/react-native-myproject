@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import Header from './components/Header';
+import TodoItem from './components/TodoItem';
 
 export default function App() {
   const [todos, setTodos] = useState([
@@ -10,6 +11,12 @@ export default function App() {
     { text: '运动', key: '3' },
     { text: '买生活用品', key: '4' },
   ]);
+
+  const pressedHandler = (key) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.key !== key);
+    });
+  };
   return (
     <View style={styles.container}>
       {/* 头部header */}
@@ -19,7 +26,9 @@ export default function App() {
         <View style={styles.list}>
           <FlatList
             data={todos}
-            renderItem={({ item }) => <Text>{item.text}</Text>}
+            renderItem={({ item }) => (
+              <TodoItem item={item} pressedHandler={pressedHandler} />
+            )}
           />
         </View>
       </View>
