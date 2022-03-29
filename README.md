@@ -1,1 +1,1 @@
-lesson-06:FlatList组件
+lesson-07:触碰类组件
