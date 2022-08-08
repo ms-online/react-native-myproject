@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import AddTodo from './components/AddTodo';
 import Header from './components/Header';
+import Sandbox from './components/Sandbox';
 import TodoItem from './components/TodoItem';
 
 export default function App() {
@@ -61,6 +62,7 @@ export default function App() {
   };
 
   return (
+    // <Sandbox />
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         {/* 头部header */}
@@ -90,9 +92,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   content: {
+    flex: 1,
+    // backgroundColor: 'pink',
     padding: 40,
   },
   list: {
+    flex: 1,
+    // backgroundColor: 'yellow',
     marginTop: 20,
   },
 });
